@@ -16,6 +16,7 @@ IMAGE = pcfkubo/cfcr-sample-mutating-admission-webhook-proxy-amd64
 TAG = 0.1-dev
 
 build:
+	dep ensure
 	CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o webhook .
 	docker build --no-cache -t $(IMAGE):$(TAG) .
 	rm -rf webhook
